@@ -10,13 +10,14 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
     private String userName;
     private String password;
+    private String email;
     @OneToMany(mappedBy = "user")
     private List<Recipe> recipes;
 }
