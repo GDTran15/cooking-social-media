@@ -16,7 +16,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
     private String userName;
-
+    private String password;
     @OneToMany(mappedBy = "user")
     private List<Recipe> recipes;
 }
