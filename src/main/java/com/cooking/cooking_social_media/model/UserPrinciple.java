@@ -16,7 +16,7 @@ public class UserPrinciple implements UserDetails {
     private User user;
 
 
-     UserPrinciple(User user) {
+     public UserPrinciple(User user) {
         this.user = user;
     }
 
