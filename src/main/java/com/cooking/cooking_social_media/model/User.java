@@ -20,4 +20,10 @@ public class User {
     private String email;
     @OneToMany(mappedBy = "user")
     private List<Recipe> recipes;
+
+    @OneToMany(mappedBy = "user")
+    private List<Likes> likes;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comments> comments;
 }

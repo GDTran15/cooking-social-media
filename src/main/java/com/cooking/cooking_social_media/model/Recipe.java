@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -16,6 +18,9 @@ public class Recipe {
     private String recipeName;
     private String recipeIngredients;
     private String recipeDescription;
+
+    @OneToMany(mappedBy = "recipe")
+    private List<Likes> likes;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
