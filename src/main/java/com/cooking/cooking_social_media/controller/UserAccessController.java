@@ -2,6 +2,7 @@ package com.cooking.cooking_social_media.controller;
 
 import com.cooking.cooking_social_media.DTO.LoginRequestDTO;
 import com.cooking.cooking_social_media.DTO.LoginResponseDTO;
+import com.cooking.cooking_social_media.DTO.RegisterRequestDTO;
 import com.cooking.cooking_social_media.model.User;
 import com.cooking.cooking_social_media.repository.UserRepo;
 import com.cooking.cooking_social_media.service.JwtService;
@@ -36,9 +37,9 @@ public class UserAccessController {
     }
 
     @PostMapping("register")
-    public ResponseEntity<String> registerUser(@RequestBody User user) {
+    public ResponseEntity<String> registerUser(@RequestBody RegisterRequestDTO registerRequestDTO) {
         try{
-            service.createUser(user);
+            service.createUser(registerRequestDTO);
             return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
         } catch (RuntimeException e){}
         return new ResponseEntity<>("Username or email exist", HttpStatus.CONFLICT);
