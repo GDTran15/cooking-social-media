@@ -1,8 +1,8 @@
 package com.cooking.cooking_social_media.controller;
 
-import com.cooking.cooking_social_media.DTO.LoginRequestDTO;
-import com.cooking.cooking_social_media.DTO.LoginResponseDTO;
-import com.cooking.cooking_social_media.DTO.RegisterRequestDTO;
+import com.cooking.cooking_social_media.dto.LoginRequestDTO;
+import com.cooking.cooking_social_media.dto.LoginResponseDTO;
+import com.cooking.cooking_social_media.dto.RegisterRequestDTO;
 import com.cooking.cooking_social_media.model.User;
 import com.cooking.cooking_social_media.repository.UserRepo;
 import com.cooking.cooking_social_media.service.JwtService;
