@@ -7,6 +7,7 @@ import com.cooking.cooking_social_media.model.User;
 import com.cooking.cooking_social_media.repository.UserRepo;
 import com.cooking.cooking_social_media.service.JwtService;
 import com.cooking.cooking_social_media.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,12 +38,10 @@ public class UserAccessController {
     }
 
     @PostMapping("register")
-    public ResponseEntity<String> registerUser(@RequestBody RegisterRequestDTO registerRequestDTO) {
-        try{
+    public ResponseEntity<String> registerUser(@Valid @RequestBody RegisterRequestDTO registerRequestDTO) {
             service.createUser(registerRequestDTO);
             return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
-        } catch (RuntimeException e){}
-        return new ResponseEntity<>("Username or email exist", HttpStatus.CONFLICT);
+
     }
 
     @PostMapping("login")

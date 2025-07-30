@@ -35,22 +35,29 @@ public class RecipePostController {
         return new ResponseEntity<>(recipeService.getAllRecipeWithIngredient(ingredient), HttpStatus.OK );
     }
 
-    @PostMapping("recipe/add")
+    @GetMapping("recipe/user/{userName}")
+    public ResponseEntity<List<RecipeResponseDTO>> findRecipeByUserId(@PathVariable String userName) {
+       return new ResponseEntity<>(recipeService.getRecipeFromOwnerName(userName), HttpStatus.OK);
+    }
+
+    @PostMapping("recipe")
     public ResponseEntity<String> addRecipe(@RequestBody AddRecipeRequestDTO addRecipeRequestDTO, @RequestHeader("Authorization") String authHeader) {
         recipeService.addRecipe(addRecipeRequestDTO, authHeader);
         return new ResponseEntity<>("success", HttpStatus.CREATED);
     }
 
-    @PutMapping("recipe/{recipeId}/update")
-    public ResponseEntity<String> updateRecipe(@RequestBody AddRecipeRequestDTO addRecipeRequestDTO, @PathVariable Integer recipeId,@RequestHeader String authHeader) {
+    @PutMapping("recipe/{recipeId}")
+    public ResponseEntity<String> updateRecipe(@RequestBody AddRecipeRequestDTO addRecipeRequestDTO, @PathVariable Integer recipeId,@RequestHeader("Authorization") String authHeader) {
         recipeService.updateRecipe(addRecipeRequestDTO,recipeId, authHeader);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
-    @DeleteMapping("recipe/{recipeId}/delete")
-    public ResponseEntity<String> deleteRecipe(@PathVariable Integer recipeId, @RequestHeader String authHeader) {
+    @DeleteMapping("recipe/{recipeId}")
+    public ResponseEntity<String> deleteRecipe(@PathVariable Integer recipeId, @RequestHeader("Authorization") String authHeader) {
         recipeService.deleteRecipe(recipeId, authHeader);
         return new ResponseEntity<>("Deleted", HttpStatus.ACCEPTED);
     }
+
+
 
 }

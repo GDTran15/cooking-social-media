@@ -21,7 +21,7 @@ public class LikeId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;                                 // (1)
         if (!(o instanceof LikeId likeId)) return false;          // (2)
-        return userId == likeId.userId && recipeId == likeId.recipeId; // (3)
+        return userId.equals(likeId.userId) && recipeId.equals(likeId.recipeId); // (3)
     }
 
     @Override

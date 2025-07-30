@@ -1,9 +1,12 @@
 package com.cooking.cooking_social_media.service;
 
 import com.cooking.cooking_social_media.dto.RegisterRequestDTO;
+import com.cooking.cooking_social_media.exception.UserNameOrEmailAlreadyExist;
 import com.cooking.cooking_social_media.model.User;
 import com.cooking.cooking_social_media.repository.UserRepo;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,14 +20,14 @@ public class UserService {
     private UserRepo userRepo;
 
     @Transactional(rollbackFor = Exception.class)
-    public User createUser(RegisterRequestDTO registerForm) {
+    public User createUser( RegisterRequestDTO registerForm) {
         User userNameExist = userRepo.findByUserName(registerForm.userName());
         User userEmailExist = userRepo.findByEmail(registerForm.email());
         if (userNameExist != null) {
-            throw new RuntimeException("Username already exists");
+            throw new UserNameOrEmailAlreadyExist("Username already exists");
         }
         if ( userEmailExist != null) {
-            throw new RuntimeException("Email already exists");
+            throw new UserNameOrEmailAlreadyExist("Email already exists");
         }
         User user = new User();
         user.setUserName(registerForm.userName());
